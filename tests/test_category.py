@@ -1,5 +1,5 @@
 from src.category import Category
-from tests.conftest import category_citrus,category_farm
+
 
 def test_category_farm(category_farm):
     assert category_farm.name == "Farm fruits"

@@ -1,8 +1,3 @@
-from tests.conftest import product
-
-from src.products import Product
-
-
 def test_product(product):
     assert product.name == "Apple"
     assert product.description == "Golden apple"

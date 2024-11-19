@@ -1,7 +1,6 @@
 import pytest
 
 from src.category import Category
-
 from src.products import Product
 
 
@@ -17,4 +16,6 @@ def category_farm():
 
 @pytest.fixture
 def category_citrus():
-    return Category("Citrus fruits", "Citrus fruits", ["Orange", "Grape", "Limon", "Broomstick"])
+    return Category(
+        "Citrus fruits", "Citrus fruits", ["Orange", "Grape", "Limon", "Broomstick"]
+    )
