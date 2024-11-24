@@ -1,10 +1,13 @@
+from typing import Any
+
+
 class Product:
     name: str
     description: str
     price: float
     quantity: int
 
-    products: list[Product] = []
+    products: list = []
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         self.name = name
@@ -13,7 +16,7 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, product_dict: dict) -> Product:
+    def new_product(cls, product_dict: dict) -> Any:
         name = product_dict["name"]
         description = product_dict["description"]
         price = product_dict["price"]

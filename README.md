@@ -44,22 +44,23 @@ pytest --cov src --cov-report term-missing
 platform win32 -- Python 3.12.6, pytest-8.3.3, pluggy-1.5.0
 configfile: pytest.ini
 plugins: cov-6.0.0
-collected 5 items                                            
+collected 9 items                                            
 
-tests\test_category.py ...                             [ 60%]
-tests\test_products.py .                               [ 80%]
+tests\test_category.py ....                            [ 44%]
+tests\test_products.py ....                            [ 88%]
 tests\test_utils.py .                                  [100%]
 
 ---------- coverage: platform win32, python 3.12.6-final-0 -----------
 Name              Stmts   Miss  Cover   Missing
 -----------------------------------------------
 src\__init__.py       0      0   100%
-src\category.py      12      0   100%
-src\products.py      10      0   100%
+src\category.py      25      0   100%
+src\products.py      37      0   100%
 src\utils.py         19      8    58%   17-25
 -----------------------------------------------
-TOTAL                41      8    80%
+TOTAL                81      8    90%
 
 
-===================== 5 passed in 0.10s ===================== 
+===================== 9 passed in 0.17s =====================
+
 ````
