@@ -4,7 +4,7 @@ class Product:
     price: float
     quantity: int
 
-    products = []
+    products: list[Product] = []
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         self.name = name
@@ -12,9 +12,8 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     @classmethod
-    def new_product(cls, product_dict: dict):
+    def new_product(cls, product_dict: dict) -> Product:
         name = product_dict["name"]
         description = product_dict["description"]
         price = product_dict["price"]
@@ -30,14 +29,12 @@ class Product:
         cls.products.append(new_product)
         return new_product
 
-
     @property
-    def price(self):
+    def price(self) -> float:
         return self.__price
 
-
     @price.setter
-    def price(self, price):
+    def price(self, price: float) -> None:
         if price <= 0:
             raise ValueError("Цена не должна быть нулевая или отрицательная")
         elif 0 < price < self.__price:
@@ -46,5 +43,3 @@ class Product:
                 self.__price = price
         else:
             self.__price = price
-
-

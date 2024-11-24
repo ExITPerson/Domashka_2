@@ -13,7 +13,7 @@ def read_json(path: str) -> Any:
     return data
 
 
-def creating_object(data: dict) -> None:
+def creating_object(data: dict) -> list:
     categories = []
     for category in data:
         products = []

@@ -1,6 +1,8 @@
-from src.products import Product
-import pytest
 from unittest.mock import patch
+
+import pytest
+
+from src.products import Product
 
 
 def test_product(product) -> None:
@@ -11,7 +13,9 @@ def test_product(product) -> None:
 
 
 def test_new_product():
-    new_product = Product.new_product({"name":"Orange", "description":"Krasnodar Orange", "price":50.1, "quantity":10})
+    new_product = Product.new_product(
+        {"name": "Orange", "description": "Krasnodar Orange", "price": 50.1, "quantity": 10}
+    )
     assert new_product.name == "Orange"
     assert new_product.description == "Krasnodar Orange"
     assert new_product.price == 50.1
@@ -20,19 +24,20 @@ def test_new_product():
 
 def test_new_product_product_exists():
     new_product = Product.new_product(
-        {"name": "Ananas", "description": "Krasnodar Ananas", "price": 50.1, "quantity": 10})
+        {"name": "Ananas", "description": "Krasnodar Ananas", "price": 50.1, "quantity": 10}
+    )
     assert new_product.quantity == 10
     assert new_product.price == 50.1
     new_product = Product.new_product(
-        {"name": "Ananas", "description": "Krasnodar Ananas", "price": 60.1, "quantity": 5})
+        {"name": "Ananas", "description": "Krasnodar Ananas", "price": 60.1, "quantity": 5}
+    )
     assert new_product.quantity == 15
     assert new_product.price == 60.1
 
 
 @patch("builtins.input")
 def test_price(mock_input):
-    new_product = Product.new_product(
-        {"name": "Lemon", "description": "Krasnodar Lemon", "price": 50, "quantity": 10})
+    new_product = Product.new_product({"name": "Lemon", "description": "Krasnodar Lemon", "price": 50, "quantity": 10})
     assert new_product.price == 50
 
     new_product.price = 60

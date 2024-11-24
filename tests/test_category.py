@@ -1,6 +1,7 @@
 from src.category import Category
 from src.products import Product
 
+
 def test_category_farm(category_farm) -> None:
     assert category_farm.name == "Farm fruits"
     assert category_farm.description == "Farm fruits"
@@ -20,11 +21,7 @@ def test_count_category_and_products() -> None:
 
 def test_add_product_and_products():
     product1 = Product("Orange", "Krasnodar Orange", 50, 8)
-    new_category = Category(
-        "Краснодарские фрукты",
-        "Свежие фрукты из Краснодарского края",
-        [product1]
-    )
+    new_category = Category("Краснодарские фрукты", "Свежие фрукты из Краснодарского края", [product1])
     assert new_category.product_count == 8
     assert new_category.products == "Orange, 50 руб. Остаток: 8\n"
     product4 = Product("Ananas", "Krasnodar Ananas", 100, 7)
