@@ -37,6 +37,6 @@ def category(product, product2):
     category1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        [product, product2]
+        [product, product2],
     )
     return category1

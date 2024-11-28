@@ -1,21 +1,21 @@
-from src.products import Product
+from typing import Any
+
 from src.category import Category
+from src.products import Product
 
 
 class ProductIterator:
 
-    def __init__(self, category_obj):
+    def __init__(self, category_obj: Category) -> None:
         self.category = category_obj
         self.sum = 0
         self.index = 0
 
-
-    def __iter__(self):
+    def __iter__(self) -> Any:
         self.index = 0
         return self
 
-
-    def __next__(self):
+    def __next__(self) -> Any:
         if self.index < len(self.category.products_in_list):
             product = self.category.products_in_list[self.index]
             self.index += 1
@@ -32,7 +32,8 @@ if __name__ == "__main__":
     category1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        [product1, product2, product3])
+        [product1, product2, product3],
+    )
 
     iterator = ProductIterator(category1)
 

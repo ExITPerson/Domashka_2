@@ -2,8 +2,8 @@ from unittest.mock import patch
 
 import pytest
 
-from src.products import Product
 from src.product_iterator import ProductIterator
+from src.products import Product
 
 
 def test_product(product) -> None:
