@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category
 from src.products import Product
 
@@ -28,3 +30,16 @@ def test_add_product_and_products():
     new_category.add_product(product4)
     assert new_category.product_count == 9
     assert new_category.products == ("Orange, 50 руб. Остаток: 8\nAnanas, 100 руб. Остаток: 7\n")
+
+
+def test_category_str(category):
+    assert str(category) == "Смартфоны, количество продуктов: 110"
+
+
+def test_product_iterator(product_iterator):
+    iter(product_iterator)
+    assert product_iterator.index == 0
+    assert next(product_iterator).name == "Apple"
+    assert next(product_iterator).name == "Grape"
+    with pytest.raises(StopIteration):
+        next(product_iterator)

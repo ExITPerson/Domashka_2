@@ -1,5 +1,5 @@
-from products import Product
-from category import Category
+from src.products import Product
+from src.category import Category
 
 
 class ProductIterator:
@@ -11,17 +11,17 @@ class ProductIterator:
 
 
     def __iter__(self):
+        self.index = 0
         return self
 
 
     def __next__(self):
-        for product in self.category.products_in_list:
-            if self.index < len(self.category.products_in_list):
-                self.sum += product.price * product.quantity
-                self.index += 1
-            else:
-                raise StopIteration
-        return self.sum
+        if self.index < len(self.category.products_in_list):
+            product = self.category.products_in_list[self.index]
+            self.index += 1
+            return product
+        else:
+            raise StopIteration
 
 
 if __name__ == "__main__":

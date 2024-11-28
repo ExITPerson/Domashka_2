@@ -3,6 +3,7 @@ from unittest.mock import patch
 import pytest
 
 from src.products import Product
+from src.product_iterator import ProductIterator
 
 
 def test_product(product) -> None:
@@ -53,3 +54,12 @@ def test_price(mock_input):
     mock_input.return_value = "n"
     new_product.price = 40
     assert new_product.price == 50
+
+
+def test_product_str(product):
+    assert str(product) == "Apple, 50.1 руб. Остаток: 10"
+
+
+def test_product_add(product, product2):
+    result = product + product2
+    assert result == 6511
