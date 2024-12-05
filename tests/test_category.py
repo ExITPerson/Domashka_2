@@ -2,6 +2,8 @@ import pytest
 
 from src.category import Category
 from src.products import Product
+from src.smartphone_products import Smartphone
+from tests.conftest import category_smartphone
 
 
 def test_category_farm(category_farm) -> None:
@@ -43,3 +45,15 @@ def test_product_iterator(product_iterator):
     assert next(product_iterator).name == "Grape"
     with pytest.raises(StopIteration):
         next(product_iterator)
+
+
+def test_add_products_category(smartphone1, smartphone2):
+    Category.product_count = 0
+    category_smartphone = Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
+    smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
+    category_smartphone.add_product(smartphone3)
+    assert Category.product_count == 3
+
+    with pytest.raises(TypeError):
+        category_smartphone.add_product("Новый продукт")
+

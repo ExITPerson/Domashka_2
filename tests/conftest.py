@@ -67,3 +67,13 @@ def lawn_grass1():
 def lawn_grass2():
     lawn_grass = LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
     return lawn_grass
+
+
+@pytest.fixture
+def category_crass(lawn_grass1, lawn_grass2):
+    return Category("Газонная трава", "Различные виды газонной травы", [lawn_grass1, lawn_grass2])
+
+
+@pytest.fixture
+def category_smartphone(smartphone1, smartphone2):
+    return Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
