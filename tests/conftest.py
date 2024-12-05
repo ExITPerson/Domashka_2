@@ -5,6 +5,8 @@ import pytest
 from src.category import Category
 from src.product_iterator import ProductIterator
 from src.products import Product
+from src.smartphone_products import Smartphone
+from src.lawn_grass_products import LawnGrass
 
 
 @pytest.fixture
@@ -40,3 +42,22 @@ def category(product, product2):
         [product, product2],
     )
     return category1
+
+
+@pytest.fixture
+def smartphone1():
+    smartphone = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5,
+                         "S23 Ultra", 256, "Серый")
+    return smartphone
+
+
+@pytest.fixture
+def smartphone2():
+    smartphone = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
+    return smartphone
+
+
+@pytest.fixture
+def lawn_grass1():
+    lawn_grass = LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+    return lawn_grass
