@@ -2,7 +2,6 @@ from unittest.mock import patch
 
 import pytest
 
-from src.product_iterator import ProductIterator
 from src.products import Product
 
 

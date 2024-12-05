@@ -3,7 +3,6 @@ import pytest
 from src.category import Category
 from src.products import Product
 from src.smartphone_products import Smartphone
-from tests.conftest import category_smartphone
 
 
 def test_category_farm(category_farm) -> None:
@@ -56,4 +55,3 @@ def test_add_products_category(smartphone1, smartphone2):
 
     with pytest.raises(TypeError):
         category_smartphone.add_product("Новый продукт")
-
