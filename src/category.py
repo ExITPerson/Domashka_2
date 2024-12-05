@@ -1,4 +1,6 @@
+from src.lawn_grass_products import LawnGrass
 from src.products import Product
+from src.smartphone_products import Smartphone
 
 
 class Category:
@@ -22,8 +24,11 @@ class Category:
         return f"{self.name}, количество продуктов: {count}"
 
     def add_product(self, product: Product) -> None:
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, (Product, LawnGrass, Smartphone)):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def products(self) -> str:
