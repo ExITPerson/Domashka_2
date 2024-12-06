@@ -1,5 +1,6 @@
-from src.products import Product
 from typing import Any
+
+from src.products import Product
 
 
 class Smartphone(Product):

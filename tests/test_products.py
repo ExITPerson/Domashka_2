@@ -1,3 +1,4 @@
+from typing import Any
 from unittest.mock import patch
 
 import pytest
@@ -5,14 +6,14 @@ import pytest
 from src.products import Product
 
 
-def test_product(product) -> None:
+def test_product(product: Product) -> None:
     assert product.name == "Apple"
     assert product.description == "Golden apple"
     assert product.price == 50.1
     assert product.quantity == 10
 
 
-def test_new_product():
+def test_new_product() -> None:
     new_product = Product.new_product(
         {"name": "Orange", "description": "Krasnodar Orange", "price": 50.1, "quantity": 10}
     )
@@ -22,7 +23,7 @@ def test_new_product():
     assert new_product.quantity == 10
 
 
-def test_new_product_product_exists():
+def test_new_product_product_exists() -> None:
     new_product = Product.new_product(
         {"name": "Ananas", "description": "Krasnodar Ananas", "price": 50.1, "quantity": 10}
     )
@@ -36,7 +37,7 @@ def test_new_product_product_exists():
 
 
 @patch("builtins.input")
-def test_price(mock_input):
+def test_price(mock_input: Any) -> None:
     new_product = Product.new_product({"name": "Lemon", "description": "Krasnodar Lemon", "price": 50, "quantity": 10})
     assert new_product.price == 50
 
@@ -55,10 +56,10 @@ def test_price(mock_input):
     assert new_product.price == 50
 
 
-def test_product_str(product):
+def test_product_str(product: Product) -> None:
     assert str(product) == "Apple, 50.1 руб. Остаток: 10"
 
 
-def test_product_add(product, product2):
+def test_product_add(product: Product, product2: Product) -> None:
     result = product + product2
     assert result == 6511
