@@ -40,27 +40,32 @@ pytest --cov src --cov-report term-missing
 - **Увидите информацию о тестах папки scr в терминале**
 
 ````
-==================== test session starts ====================
+==================== test session starts =====================
 platform win32 -- Python 3.12.6, pytest-8.3.3, pluggy-1.5.0
 configfile: pytest.ini
 plugins: cov-6.0.0
-collected 9 items                                            
+collected 18 items                                            
 
-tests\test_category.py ....                            [ 44%]
-tests\test_products.py ....                            [ 88%]
-tests\test_utils.py .                                  [100%]
+tests\test_category.py .......                          [ 38%]
+tests\test_lawn_grass.py ..                             [ 50%]
+tests\test_products.py ......                           [ 83%]
+tests\test_smartphone_products.py ..                    [ 94%]
+tests\test_utils.py .                                   [100%]
 
 ---------- coverage: platform win32, python 3.12.6-final-0 -----------
-Name              Stmts   Miss  Cover   Missing
------------------------------------------------
-src\__init__.py       0      0   100%
-src\category.py      25      0   100%
-src\products.py      37      0   100%
-src\utils.py         19      8    58%   17-25
------------------------------------------------
-TOTAL                81      8    90%
+Name                         Stmts   Miss  Cover   Missing
+----------------------------------------------------------
+src\__init__.py                  0      0   100%
+src\category.py                 34      0   100%
+src\lawn_grass_products.py      12      1    92%   24
+src\product_iterator.py         25      7    72%   28-41
+src\products.py                 44      1    98%   24
+src\smartphone_products.py      13      0   100%
+src\utils.py                    19      8    58%   17-25       
+----------------------------------------------------------     
+TOTAL                          147     17    88%
 
 
-===================== 9 passed in 0.17s =====================
+===================== 18 passed in 0.20s ===================== 
 
 ````
