@@ -1,7 +1,9 @@
 from typing import Any
 
+from src.base_products import BaseProduct
 
-class Product:
+
+class Product(BaseProduct):
     name: str
     description: str
     price: float
