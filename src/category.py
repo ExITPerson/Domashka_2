@@ -64,6 +64,9 @@ class Category(Abstract):
         return self.__products
 
     def print_count_products_in_stock(self):
-        return Category.product_count
+        count_products = 0
+        for product in self.__products:
+            count_products += product.quantity
+        return count_products
 
 
