@@ -1,4 +1,4 @@
-from src.category import Category
+from src.category import Category, Order
 from src.products import Product
 from src.lawn_grass_products import LawnGrass
 from src.smartphone_products import Smartphone
@@ -45,3 +45,9 @@ if __name__ == '__main__':
 
     print(Category.category_count)
     print(Category.product_count)
+
+    print(repr(category1.print_count_products_in_stock()))
+
+    order1 = Order(product1, 2)
+    print(repr(order1))
+    print(order1.print_count_products_in_stock())
