@@ -1,12 +1,15 @@
+from abc import ABC, abstractmethod
+from typing import Any
+
 from src.lawn_grass_products import LawnGrass
 from src.products import Product
 from src.smartphone_products import Smartphone
-from abc import ABC, abstractmethod
+
 
 class Abstract(ABC):
 
     @abstractmethod
-    def print_count_products_in_stock(self):
+    def print_count_products_in_stock(self) -> Any:
         pass
 
 
@@ -18,10 +21,10 @@ class Order(Abstract):
         self.total_price = self.order_count * self.product.price
         self.product.quantity -= self.order_count
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Товар: {self.product.name}, количество: {self.order_count}, итоговая цена: {self.total_price}"
 
-    def print_count_products_in_stock(self):
+    def print_count_products_in_stock(self) -> int:
         return self.product.quantity
 
 
@@ -63,10 +66,8 @@ class Category(Abstract):
     def products_in_list(self) -> list:
         return self.__products
 
-    def print_count_products_in_stock(self):
+    def print_count_products_in_stock(self) -> int:
         count_products = 0
         for product in self.__products:
             count_products += product.quantity
         return count_products
-
-

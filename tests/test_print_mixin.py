@@ -1,9 +1,11 @@
-from src.products import Product
-from src.print_mixin import PrintMixin
+from pytest import CaptureFixture
+
 from src.lawn_grass_products import LawnGrass
+from src.products import Product
 from src.smartphone_products import Smartphone
 
-def test_print_mixin(capsys):
+
+def test_print_mixin(capsys: CaptureFixture) -> None:
     Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     message = capsys.readouterr()
     assert message.out.strip() == "Product(Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5)"
