@@ -1,6 +1,6 @@
 import pytest
 
-from src.category import Category
+from src.category import Category, Order
 from src.product_iterator import ProductIterator
 from src.products import Product
 from src.smartphone_products import Smartphone
@@ -56,3 +56,22 @@ def test_add_products_category(smartphone1: Smartphone, smartphone2: Smartphone)
 
     with pytest.raises(TypeError):
         category_smartphone.add_product("Новый продукт")
+
+
+def test_order(product: Product) -> None:
+    assert product.quantity == 10
+    order = Order(product, 2)
+    assert order.product.name == "Apple"
+    assert order.order_count == 2
+    assert order.total_price == 100.2
+    assert order.print_count_products_in_stock() == 8
+    assert product.quantity == 8
+
+
+def test_category_print_count_products_in_stock(product: Product, product2: Product) -> None:
+    Category.product_count = 0
+    category = Category("Fruit", "New fruit", [product, product2])
+    assert category.print_count_products_in_stock() == 110
+    product3 = Product("Orange", "New orange", 23, 23)
+    category.add_product(product3)
+    assert category.print_count_products_in_stock() == 133
