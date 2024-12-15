@@ -4,6 +4,7 @@ from typing import Any
 from src.lawn_grass_products import LawnGrass
 from src.products import Product
 from src.smartphone_products import Smartphone
+from src.zero_quantity import ZeroQuantityProduct
 
 
 class Abstract(ABC):
@@ -17,7 +18,16 @@ class Order(Abstract):
 
     def __init__(self, product: Product, order_count: int) -> None:
         self.product = product
-        self.order_count = order_count
+        try:
+            if order_count <= 0:
+                raise ZeroQuantityProduct("Товар с нулевым или менее кол-вом не может быть добавлен")
+        except ZeroQuantityProduct as e:
+            print(str(e))
+        else:
+            self.order_count = order_count
+            print("Товар добавлен")
+        finally:
+            print("Обработка товара завершена")
         self.total_price = self.order_count * self.product.price
         self.product.quantity -= self.order_count
 
@@ -35,7 +45,7 @@ class Category(Abstract):
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: list) -> None:
+    def __init__(self, name: str, description: str, products: list = None) -> None:
         self.name = name
         self.description = description
         self.__products = products if products else []
@@ -50,8 +60,18 @@ class Category(Abstract):
 
     def add_product(self, product: Product) -> None:
         if isinstance(product, (Product, LawnGrass, Smartphone)):
-            self.__products.append(product)
-            Category.product_count += 1
+            try:
+                if product.quantity <= 0:
+                    raise ZeroQuantityProduct("Товар с нулевым или менее кол-вом не может быть добавлен")
+            except ZeroQuantityProduct as e:
+                print(str(e))
+            else:
+                self.__products.append(product)
+                Category.product_count += 1
+                print("Товар добавлен")
+            finally:
+                print("Обработка товара завершена")
+
         else:
             raise TypeError
 
@@ -73,9 +93,9 @@ class Category(Abstract):
         return count_products
 
 
-    def avg_price_products(self):
+    def middle_price(self) -> int | float:
         price_products = [product.price for product in self.__products]
         try:
-            return sum(price_products) / len(price_products)
+            return round(sum(price_products) / len(price_products), 2)
         except ZeroDivisionError:
             return 0

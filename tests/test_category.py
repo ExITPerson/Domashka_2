@@ -4,6 +4,7 @@ from src.category import Category, Order
 from src.product_iterator import ProductIterator
 from src.products import Product
 from src.smartphone_products import Smartphone
+from pytest import CaptureFixture
 
 
 def test_category_farm(category_farm: Category) -> None:
@@ -77,8 +78,28 @@ def test_category_print_count_products_in_stock(product: Product, product2: Prod
     assert category.print_count_products_in_stock() == 133
 
 
-def test_avg_price_products(category):
-    assert category.avg_price_products() == 55.1
+def test_middle_price(category: Category) -> None:
+    assert category.middle_price() == 55.1
 
     category2 = Category("Fruit", "New fruit", [])
-    assert category2.avg_price_products() == 0
+    assert category2.middle_price() == 0
+
+
+def test_add_product_error(capsys: CaptureFixture, category: Category) -> None:
+    assert len(category.products_in_list) == 2
+    product = Product("Orange", "Orange Krasnodar", 50.1, 1)
+    product.quantity = 0
+    category.add_product(product)
+    message = capsys.readouterr()
+    assert message.out.strip().split("\n")[-2] == "Товар с нулевым или менее кол-вом не может быть добавлен"
+    assert message.out.strip().split("\n")[-1] == "Обработка товара завершена"
+
+
+def test_add_product_positive_message(capsys: CaptureFixture, category: Category) -> None:
+    assert len(category.products_in_list) == 2
+    product = Product("Orange", "Orange Krasnodar", 50.1, 1)
+    category.add_product(product)
+    message = capsys.readouterr()
+    assert message.out.strip().split("\n")[-2] == "Товар добавлен"
+    assert message.out.strip().split("\n")[-1] == "Обработка товара завершена"
+    assert len(category.products_in_list) == 3
