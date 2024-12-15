@@ -1,10 +1,10 @@
 import pytest
+from pytest import CaptureFixture
 
 from src.category import Category, Order
 from src.product_iterator import ProductIterator
 from src.products import Product
 from src.smartphone_products import Smartphone
-from pytest import CaptureFixture
 
 
 def test_category_farm(category_farm: Category) -> None:

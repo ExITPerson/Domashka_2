@@ -1,12 +1,14 @@
-from src.category import Category, Order
+from src.category import Category
 from src.products import Product
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
-    except ValueError as e:
+    except ValueError:
         print(
-            "Возникла ошибка ValueError прерывающая работу программы при попытке добавить продукт с нулевым количеством")
+            "Возникла ошибка ValueError прерывающая работу "
+            "программы при попытке добавить продукт с нулевым количеством"
+        )
     else:
         print("Не возникла ошибка ValueError при попытке добавить продукт с нулевым количеством")
 
@@ -22,5 +24,6 @@ if __name__ == '__main__':
     print(category_empty.middle_price())
 
     category_empty.add_product(product3)
-    product4 = Product("Xiaomi Redmi Note", "1024GB, Синий", 31000.0, 0)
+    product4 = Product("Xiaomi Redmi Note", "1024GB, Синий", 31000.0, 1)
+    product4.quantity = 0
     category_empty.add_product(product4)

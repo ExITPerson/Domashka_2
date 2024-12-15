@@ -65,10 +65,9 @@ def test_product_add(product: Product, product2: Product) -> None:
     assert result == 6511
 
 
-def test_quantity_zero():
+def test_quantity_zero() -> None:
     with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
         Product("Apple", "Golden apple", 50.1, -1)
 
     with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
         Product("Apple", "Golden apple", 50.1, 0)
-

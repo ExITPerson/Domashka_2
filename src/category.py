@@ -92,8 +92,7 @@ class Category(Abstract):
             count_products += product.quantity
         return count_products
 
-
-    def middle_price(self) -> int | float:
+    def middle_price(self) -> Any:
         price_products = [product.price for product in self.__products]
         try:
             return round(sum(price_products) / len(price_products), 2)
