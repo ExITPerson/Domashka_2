@@ -71,3 +71,11 @@ class Category(Abstract):
         for product in self.__products:
             count_products += product.quantity
         return count_products
+
+
+    def avg_price_products(self):
+        price_products = [product.price for product in self.__products]
+        try:
+            return sum(price_products) / len(price_products)
+        except ZeroDivisionError:
+            return 0

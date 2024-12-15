@@ -75,3 +75,10 @@ def test_category_print_count_products_in_stock(product: Product, product2: Prod
     product3 = Product("Orange", "New orange", 23, 23)
     category.add_product(product3)
     assert category.print_count_products_in_stock() == 133
+
+
+def test_avg_price_products(category):
+    assert category.avg_price_products() == 55.1
+
+    category2 = Category("Fruit", "New fruit", [])
+    assert category2.avg_price_products() == 0
